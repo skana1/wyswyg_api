@@ -5,11 +5,23 @@
     <title>Edit Article</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <script type="text/javascript" src="ckeditor.js"></script>
+    <style>
+        .column-flex {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
 <h1>Edit Article</h1>
-<div>
-      <textarea cols="80" rows="10" id="content" name="content">
+<div class="column-flex">
+    <div>
+        <button title="Add bold text" onclick="addBoldText()"><strong>B</strong></button>
+        <button title="Add italic text" onclick="addItalicText()"><em>I</em></button>
+        <button title="Add Heading 1" onclick="addHeading1()"><span>h1</span></button>
+    </div>
+
+    <textarea cols="80" rows="10" id="content" name="content">
         &lt;h1&gt;Article Title&lt;/h1&gt;
         &lt;p&gt;Here's some sample text&lt;/p&gt;
       </textarea>
@@ -24,11 +36,24 @@
 
 </body>
 <script>
+    let contentElement = document.getElementById('content');
+
     function myFunction() {
-        let element = document.getElementById('content');
         let parsedContentElement = document.getElementById('parsedContent');
-        let submitedText = element.value;
+        let submitedText = contentElement.value;
         parsedContentElement.innerHTML = submitedText;
+    }
+
+    function addBoldText() {
+        contentElement.innerHTML += "&lt;strong&gt;CHANGEME&lt;/strong&gt;";
+    }
+
+    function addItalicText() {
+        contentElement.innerHTML += "&lt;em&gt;CHANGEME&lt;/em&gt;";
+    }
+
+    function addHeading1() {
+        contentElement.innerHTML += "&lt;h1&gt;CHANGEME&lt;/h1&gt;";
     }
 
 </script>
