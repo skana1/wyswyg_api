@@ -2,8 +2,9 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Edit Article</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Edit </title>
+
+    <meta http-equiv="content-type"  content="text/html; charset=utf-8"/>
     <script type="text/javascript" src="ckeditor.js"></script>
     <style>
 
@@ -11,10 +12,32 @@
             display: flex;
             flex-direction: column;
         }
+
+        label {
+            display: block;
+            font: 1rem 'Fira Sans', sans-serif;
+        }
+
+        input,
+        label {
+            margin: .4rem 0;
+        }
+
+
+        label {
+            display: block;
+            float: left;
+        }
+
+        .x717 {
+            margin-top: 7px;
+            font-size: 20px;
+        }
+
     </style>
 </head>
 <body>
-<h1>Edit Article</h1>
+<h1>Edit </h1>
 <div class="column-flex">
     <div>
         <button title="Add bold text" onclick="addBoldText()"><strong>B</strong></button>
@@ -23,26 +46,98 @@
     </div>
 
     <textarea cols="80" rows="10" id="content" name="content">
-        &lt;h1&gt;Article Title&lt;/h1&gt;
-        &lt;p&gt;Here's some sample text&lt;/p&gt;
       </textarea>
 
     <script type="text/javascript">
         CKEDITOR.replace('content');
     </script>
-    <button onclick="myFunction()">SUBMIT</button>
+
+    <br>
+    <button onclick="createDiv()">Create Box</button>
+    <br>
+    <button  type = "submit" onclick="submittedText()">SUBMIT</button>
+
+<div id="showDiv"  style="display:none;">
+
+        <div class="row" style="display: flex;margin-bottom: 20px;">
+            <input type="number" style="margin-right: 10px;height: 20px;width: 40px;" onChange="setDimensions()" id="width" value="300" name="width">
+            <p  class="x717">x </p>
+            <input type="number" style="margin-left: 10px;height: 20px;width: 40px;" onChange="setDimensions()" id="height" value="100" name="height">
+        </div>
+
+</div>
+
+
     <div id="parsedContent">
     </div>
+
+
+
 </div>
 
 </body>
-<script>
-    let contentElement = document.getElementById('content');
+<script type="text/javascript" >
 
-    function myFunction() {
-        let parsedContentElement = document.getElementById('parsedContent');
-        let submitedText = contentElement.value;
-        parsedContentElement.innerHTML = submitedText;
+
+    let form = document.getElementById("theForm");
+
+    let div = document.getElementById('createdElement');
+
+
+    let contentElement = document.getElementById('content');
+    let parseBox = document.getElementById('parsedContent');
+
+    function submittedText() {
+        let submittedText =  CKEDITOR.instances['content'].getData();
+
+        let box = document.getElementById('createdElement');
+        if(box == null){
+            alert("You need to create a box!!");
+        } else{
+            box.innerHTML = submittedText;
+        }
+    }
+
+    function setDimensions(){
+        let div = document.getElementById('createdElement');
+
+        let width = document.getElementById('width').value;
+        let height = document.getElementById('height').value;
+
+        if ((300 > width) || (100 > height)) {
+            alert("Minimum dimensions are 300x100");
+        } else{
+            div.style.width = width + "px";
+            div.style.height = height + "px";
+        }
+    }
+
+    function createDiv() {
+        document.getElementById('showDiv').style.display = "block";
+        let div = document.getElementById('createdElement');
+
+        if(div == null) {
+            div = document.createElement('div');
+            div.setAttribute("id", "createdElement");
+            div.setAttribute("style", "border:solid;word-break:break-all;overflow-y:scroll;");
+            parseBox.appendChild(div);
+        } else{
+            div.innerHTML = null;
+        }
+
+        let width = document.getElementById('width').value;
+        let height = document.getElementById('height').value;
+
+        div.style.width = width + "px";
+        div.style.height = height + "px";
+
+        if (300 > width) {
+            alert("Enter a number greater than 300");
+        }
+
+        if(100 > height){
+            alert("Enter a number greater than 100");
+        }
     }
 
     function addBoldText() {
@@ -56,6 +151,8 @@
     function addHeading1() {
         contentElement.innerHTML += "&lt;h1&gt;CHANGEME&lt;/h1&gt;";
     }
+
+
 
 </script>
 </html>
