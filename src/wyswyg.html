@@ -1,550 +1,290 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<html lang="en">
 <head>
-    <title>Edit</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-            href="https://fonts.googleapis.com/css2?family=Itim&display=swap"
-            rel="stylesheet"
-    />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <script type="text/javascript" src="ckeditor.js"></script>
+
     <style>
-        .column-flex {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            display: block;
-            font: 1rem "Fira Sans", sans-serif;
-        }
-
-        input,
-        label {
-            margin: 0.4rem 0;
-        }
-
-        label {
-            display: block;
-            float: left;
-        }
-
-        .x717 {
-            margin-top: -4px;
-            font-size: 15px;
-            margin-left: 4px;
-        }
-
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        .cke_chrome {
-            margin-left: 160px;
-            display: block;
-            border: 1px solid #d1d1d1;
-            padding: 0;
-            margin-right: 160px;
-        }
-        @keyframes uplift {
-            0% {
-                top: 40px;
-            }
-
-            25% {
-                top: 37.5px;
-            }
-
-            50% {
-                top: 35px;
-            }
-
-            75% {
-                top: 32.5px;
-            }
-
-            100% {
-                top: 30px;
-            }
-        }
-
-        @keyframes downlift {
-            0% {
-                box-shadow: -3px -3px 7px #999999a9, -3px -3px 12px #e9e9e9a9,
-                3px 3px 7px #999999a9, -3px -3px 12px #e9e9e9a9;
-                top: 30px;
-            }
-
-            25% {
-                box-shadow: -3px -3px 7px #b3b3b3a9, -3px -3px 12px #e9e9e9a9,
-                3px 3px 7px #b3b3b3a9, -3px -3px 12px #e9e9e9a9;
-                top: 32.5px;
-            }
-
-            50% {
-                top: 35px;
-                box-shadow: -3px -3px 7px #d6d6d6a9, -3px -3px 12px #e9e9e9a9,
-                3px 3px 7px #d6d6d6a9, -3px -3px 12px #e9e9e9a9;
-            }
-
-            75% {
-                top: 37.5px;
-                box-shadow: -3px -3px 7px #f3f3f3a9, -3px -3px 12px #e9e9e9a9,
-                3px 3px 7px #f3f3f3a9, -3px -3px 12px #e9e9e9a9;
-            }
-
-            100% {
-                box-shadow: -3px -3px 7px #e9e9e9a9, 3px 3px 7px #e9e9e9a9;
-                top: 40px;
-            }
-        }
-
-        div.input {
-            position: absolute;
-            top: 505px;
-            left: 130px;
-        }
-
-        div.input input {
-            height: 20px;
-            width: 52px;
-            font-size: 25px;
-            color: seashell;
-            text-align: center;
-            opacity: 0.7;
-            border: none;
-            border-radius: 2px;
-        }
-
-        #red {
-            background-color: red;
-        }
-
-        #green {
-            background-color: green;
-        }
-
-        #blue {
-            background-color: blue;
-        }
-
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* Firefox */
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-
-        .rainbow-text {
-            background-image: linear-gradient(
-                    to left,
-                    violet,
-                    indigo,
-                    blue,
-                    green,
-                    yellow,
-                    orange,
-                    red
-            );
-            width: 300px;
-            height: 50px;
-            -webkit-background-clip: text;
-            color: transparent;
-            font-family: "Itim";
-            text-align: center;
-            position: relative;
-            top: 340px;
-            left: 500px;
-        }
-
-        .button-727 {
-            margin: 10px;
-            width: 50%;
-            color: #000000;
-            height: 35px;
-            background-color: #7ec6eb;
-        }
-
-        .button-272 {
-            margin: 10px;
-            width: 50%;
-            color: #000000;
-            height: 35px;
-            background-color: #7ec6eb;
-        }
-
-        *,
-        ::after,
-        ::before {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            padding-left: 390px;
-            display: table-cell;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: hsl(210, 36%, 96%);
-            color: hsl(209, 61%, 16%);
-            line-height: 1.5;
-            font-size: 0.875rem;
-
+            background-color: #e2cc6d;
         }
 
-
-
-        h3 {
-            font-size: 14px;
-            text-transform: uppercase;
-            color: hsl(205, 86%, 17%);
-            line-height: 1.25;
-            margin: 0.75rem 0;
-            letter-spacing: 0.25rem;
+        h3{
             text-align: center;
         }
-        .lorem-form {
-            margin-left: 75px;
-            text-transform: capitalize;
-            letter-spacing: 0.25rem;
-            margin-top: 0rem;
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .paraAmountNum {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        label {
-            font-size: 0.9rem;
-            color: hsl(205, 86%, 17%);
-        }
-        input {
-            padding: 0.25rem 0.5rem;
-            width: 5rem;
-            border-radius: 0.3rem;
-            border: solid 2px;
-            margin: 0 0.5rem;
-            font-size: 13px;
+
+        h1 {
+            margin: 0px 0px;
+            color: #313131;
+            font-size: 30px;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: -19px;
         }
 
-        .btn {
-            text-transform: uppercase;
-            background: transparent;
-            color: #222;
-            letter-spacing: 0.1rem;
-            display: inline-block;
-            font-weight: 100;
-            transition: all 0.3s linear;
-            border: 2px solid #222;
+        h1 span {
+            font-weight: 80;
+        }
+
+        .date-picker {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            height: 60px;
+            background-color: #FFF;
+            margin: 30px auto;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+
             cursor: pointer;
-            box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
-            border-radius: 0.25rem;
-            font-size: 0.7rem;
-            padding: 0.375rem 0.75rem;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            color: #fff;
-            background: #222;
+            user-select: none;
         }
 
-        .result {
-            width: 80vw;
-            margin: 1rem auto;
+        .date-picker:hover {
+            background-color: #F3F3F3;
         }
 
-        .generate{
-            margin-left: 267px;
+        .date-picker .selected-date {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #313131;
+            font-size: 20px;
         }
 
+        .date-picker .dates {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+
+            background-color: #FFF;
+        }
+
+        .date-picker .dates.active {
+            display: block;
+        }
+
+        .date-picker .dates .month {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #EEE;
+        }
+
+        .date-picker .dates .month .arrows {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #313131;
+            font-size: 15px;
+        }
+
+        .date-picker .dates .month .arrows:hover {
+            background-color: #F3F3F3;
+        }
+
+        .date-picker .dates .month .arrows:active {
+            background-color: #00CA85;
+        }
+
+        .date-picker .dates .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            height: 200px;
+        }
+        .date-picker .dates .days .day {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #313131;
+        }
+        .date-picker .dates .days .day.selected {
+            background-color: #00CA85;
+        }
     </style>
 </head>
 <body>
+<h1>Edit Article</h1>
+<div>
+ <form action="">
+        <label >Title:</label><br>
+        <input type="text" id="fname" ><br><br>
+      <button onclick="submitTitle()">SUBMIT</button>
+    </form>
 
-<div style="display: flex;margin-top: 35px;">
-    <h1>WYSIWYG</h1>
-    <section class="section-center">
-
-
-        <form class="lorem-form">
-            <button type="submit" class="btn generate" >generate</button>
-        </form>
-        <article class="lorem-text"></article>
-
-    </section>
-</div>
-<div class="column-flex" >
-<!--    <div>-->
-<!--        <button title="Add bold text" onclick="addBoldText()">-->
-<!--            <strong>B</strong>-->
-<!--        </button>-->
-<!--        <button title="Add italic text" onclick="addItalicText()">-->
-<!--            <em>I</em>-->
-<!--        </button>-->
-<!--        <button title="Add Heading 1" onclick="addHeading1()">-->
-<!--            <span>h1</span>-->
-<!--        </button>-->
-<!--    </div>-->
-
-    <textarea cols="80" rows="10" id="content" name="content"> </textarea>
+    <textarea cols="80" rows="10" id="content" name="content">
+        &lt;h1&gt;Article Title&lt;/h1&gt;
+        &lt;p&gt;Here's some sample text&lt;/p&gt;
+      </textarea>
 
     <script type="text/javascript">
-        CKEDITOR.replace("content");
+        CKEDITOR.replace('content');
     </script>
 
-    <br />
+    <button onclick="submit()">SUBMIT</button>
 
-
-
-
-    <div style="display: flex">
-        <button
-                type="button"
-                class="btn btn-primary button-272"
-                onclick="createDiv()"
-        >
-            Create Box
-        </button>
-
-        <button
-                type="button"
-                onclick="submittedText()"
-                class="btn btn-primary button-727"
-        >
-            SUBMIT
-        </button>
+    <div id="parsedContent">
     </div>
-
-    <div id="showDiv" style="display: none">
-        <div class="row" style="display: flex; margin-bottom: 20px">
-            <input
-                    type="number"
-                    style="margin-left: 7px; height: 20px; width: 40px"
-                    onChange="setDimensions()"
-                    id="width"
-                    value="300"
-                    name="width"
-            />
-            <p class="x717">x</p>
-            <input
-                    type="number"
-                    style="margin-left: 10px; height: 20px; width: 40px"
-                    onChange="setDimensions()"
-                    id="height"
-                    value="100"
-                    name="height"
-            />
-            <input type="number" id="red" />
-            <input type="number" id="green" />
-            <input type="number" id="blue" />
-
-        </div>
-
-
-    </div>
-
-    <div id="parsedContent"></div>
-
-
 </div>
 
-<script src="script.js"></script>
+
+<h3>CUSTOM<span>DATE</span>PICKER</h3>
+
+<div class="date-picker">
+    <div class="selected-date"></div>
+
+    <div class="dates">
+        <div class="month">
+            <div class="arrows prev-mth">&lt;</div>
+            <div class="mth"></div>
+            <div class="arrows next-mth">&gt;</div>
+        </div>
+
+        <div class="days"></div>
+    </div>
+</div>
 </body>
-<script type="text/javascript">
-    let form = document.getElementById("theForm");
+<script>
+    function submit() {
+        let element = document.getElementById('content');
+        let parsedContentElement = document.getElementById('parsedContent');
+        let submitedText = element.value;
+        parsedContentElement.innerHTML = submitedText;
+    }
 
-    let div = document.getElementById("createdElement");
+    function submitTitle() {
+        let title = document.getElementById('fname');
+        let parsedTitle = document.getElementById('parsedContent');
+        let titleElement = title.value;
+        parsedTitle.innerHTML = titleElement;
+    }
 
-    let contentElement = document.getElementById("content");
-    let parseBox = document.getElementById("parsedContent");
+    const date_picker_element = document.querySelector('.date-picker');
+    const selected_date_element = document.querySelector('.date-picker .selected-date');
+    const dates_element = document.querySelector('.date-picker .dates');
+    const mth_element = document.querySelector('.date-picker .dates .month .mth');
+    const next_mth_element = document.querySelector('.date-picker .dates .month .next-mth');
+    const prev_mth_element = document.querySelector('.date-picker .dates .month .prev-mth');
+    const days_element = document.querySelector('.date-picker .dates .days');
 
-    function submittedText() {
-        let submittedText = CKEDITOR.instances["content"].getData();
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-        let box = document.getElementById("createdElement");
-        if (box == null) {
-            alert("You need to create a box!!");
-        } else {
-            box.innerHTML = submittedText;
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+
+    let selectedDate = date;
+    let selectedDay = day;
+    let selectedMonth = month;
+    let selectedYear = year;
+
+    mth_element.textContent = months[month] + ' ' + year;
+
+    selected_date_element.textContent = formatDate(date);
+    selected_date_element.dataset.value = selectedDate;
+
+    populateDates();
+
+    // EVENT LISTENERS
+    date_picker_element.addEventListener('click', toggleDatePicker);
+    next_mth_element.addEventListener('click', goToNextMonth);
+    prev_mth_element.addEventListener('click', goToPrevMonth);
+
+    // FUNCTIONS
+    function toggleDatePicker (e) {
+        if (!checkEventPathForClass(e.path, 'dates')) {
+            dates_element.classList.toggle('active');
         }
     }
 
-    function setDimensions() {
-        let div = document.getElementById("createdElement");
-
-        let width = document.getElementById("width").value;
-        let height = document.getElementById("height").value;
-
-        if (300 > width || 100 > height) {
-            alert("Minimum dimensions are 300x100");
-        } else {
-            div.style.width = width + "px";
-            div.style.height = height + "px";
+    function goToNextMonth (e) {
+        month++;
+        if (month > 11) {
+            month = 0;
+            year++;
         }
+        mth_element.textContent = months[month] + ' ' + year;
+        populateDates();
     }
 
-    function createDiv() {
-        document.getElementById("showDiv").style.display = "block";
-        let div = document.getElementById("createdElement");
-
-        if (div == null) {
-            div = document.createElement("div");
-            div.setAttribute("id", "createdElement");
-            div.setAttribute("class", "border");
-            div.setAttribute(
-                "style",
-                "border:solid;word-break:break-all;overflow-y:scroll;margin-left: 5px;"
-            );
-            parseBox.appendChild(div);
-        } else {
-            div.innerHTML = null;
+    function goToPrevMonth (e) {
+        month--;
+        if (month < 0) {
+            month = 11;
+            year--;
         }
-
-        let width = document.getElementById("width").value;
-        let height = document.getElementById("height").value;
-
-        div.style.width = width + "px";
-        div.style.height = height + "px";
-
-        if (300 > width) {
-            alert("Enter a number greater than 300");
-        }
-
-        if (100 > height) {
-            alert("Enter a number greater than 100");
-        }
+        mth_element.textContent = months[month] + ' ' + year;
+        populateDates();
     }
 
-    // function addBoldText() {
-    //     contentElement.innerHTML += "&lt;strong&gt;CHANGEME&lt;/strong&gt;";
-    // }
-    //
-    // function addItalicText() {
-    //     contentElement.innerHTML += "&lt;em&gt;CHANGEME&lt;/em&gt;";
-    // }
-    //
-    // function addHeading1() {
-    //     contentElement.innerHTML += "&lt;h1&gt;CHANGEME&lt;/h1&gt;";
-    // }
+    function populateDates (e) {
+        days_element.innerHTML = '';
+        let amount_days = 31;
 
-    let red = document.getElementById("red");
-    let green = document.getElementById("green");
-    let blue = document.getElementById("blue");
-    let div1 = document.getElementById("createdElement");
+        if (month == 1) {
+            amount_days = 28;
+        }
 
-    let box = document.getElementsByClassName("border");
+        for (let i = 0; i < amount_days; i++) {
+            const day_element = document.createElement('div');
+            day_element.classList.add('day');
+            day_element.textContent = i + 1;
 
-    let r = 0,
-        g = 0,
-        b = 0;
-
-    red.addEventListener("keyup", function (event) {
-        r = red.value;
-        if (!r) r = 0;
-
-        box[0].style.borderColor = `rgb(${r}, ${g}, ${b})`;
-    });
-
-    green.addEventListener("keyup", function (event) {
-        g = green.value;
-        if (!g) g = 0;
-        box[0].style.borderColor = `rgb(${r}, ${g}, ${b})`;
-
-        // div = document.createElement('div');
-        // div.setAttribute("style", "border color: rgb(${r}, ${g}, ${b})");
-        // parseBox.appendChild(div);
-    });
-
-    blue.addEventListener("keyup", function (event) {
-        b = blue.value;
-        if (!b) b = 0;
-        box[0].style.borderColor = `rgb(${r}, ${g}, ${b})`;
-    });
-
-    function makeParagraph() {
-            var nrOfSentences = randomIntFromInterval(25, 50)
-            var paragraph = '';
-            for ( var i = 0; i < nrOfSentences; i++ ) {
-                paragraph = paragraph + " " + makeSentence();
-
+            if (selectedDay == (i + 1) && selectedYear == year && selectedMonth == month) {
+                day_element.classList.add('selected');
             }
-            paragraph = paragraph ;
-            return paragraph;
-    }
 
-    function makeWord(){
-        var rndInt = randomIntFromInterval(3, 6)
-        var result           = '';
-        var characters       = 'bcdfghjklmnpqrstvwxyzaeiou';
-        var syllables       = 'aeiou';
-        var charactersLength = characters.length;
-        var counter = 0;
-        var character = '';
+            day_element.addEventListener('click', function () {
+                selectedDate = new Date(year + '-' + (month + 1) + '-' + (i + 1));
+                selectedDay = (i + 1);
+                selectedMonth = month;
+                selectedYear = year;
 
-        for ( var i = 0; i < rndInt; i++ ) {
-            if(counter == 2){
-                counter = 0;
-                character = syllables.charAt(randomIntFromInterval(0, 5));
-            }else{
-                character = characters.charAt(Math.floor(Math.random() *
-                    charactersLength));
-                    counter++;
-            }
-            result += character;
+                selected_date_element.textContent = formatDate(selectedDate);
+                selected_date_element.dataset.value = selectedDate;
+
+                populateDates();
+            });
+
+            days_element.appendChild(day_element);
         }
-
-        return result;
     }
 
-    function makeSentence(){
-        var nrOfWords = randomIntFromInterval(3, 10)
-        var sentence = '';
-        for ( var i = 0; i < nrOfWords; i++ ) {
-            if(i == 0){
-                sentence = sentence + " " + capitalizeFirstLetter(makeWord());
-            }
-            else{
-                sentence = sentence + " " + makeWord();
+    // HELPER FUNCTIONS
+    function checkEventPathForClass (path, selector) {
+        for (let i = 0; i < path.length; i++) {
+            if (path[i].classList && path[i].classList.contains(selector)) {
+                return true;
             }
         }
-        sentence = sentence + '. ';
-        return sentence;
+
+        return false;
     }
+    function formatDate (d) {
+        let day = d.getDate();
+        if (day < 10) {
+            day = '0' + day;
+        }
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+        let month = d.getMonth() + 1;
+        if (month < 10) {
+            month = '0' + month;
+        }
 
-    const form1 = document.querySelector(".lorem-form");
-    const NR_OF_PARA = 5;
-    const result = document.querySelector(".lorem-text");
+        let year = d.getFullYear();
 
-
-
-    form1.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let tempText = makeParagraph() + '<br>' +'<br>' + makeParagraph();
-        CKEDITOR.instances['content'].setData(tempText);
-    });
-
-    function randomIntFromInterval(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min)
+        return day + ' / ' + month + ' / ' + year;
     }
 
 </script>
-</html>
 </html>
