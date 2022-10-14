@@ -13,6 +13,8 @@
 
         h3{
             text-align: center;
+            margin-right: 805px;
+            margin-bottom: -20px;
         }
 
         h1 {
@@ -32,7 +34,7 @@
             position: relative;
             width: 100%;
             max-width: 320px;
-            height: 60px;
+            height: 48px;
             background-color: #FFF;
             margin: 30px auto;
             box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
@@ -116,9 +118,8 @@
 <h1>Edit Article</h1>
 <div>
  <form action="">
-        <label >Title:</label><br>
+        <label style="font-size: 20px;">Title:</label><br>
         <input type="text" id="fname" ><br><br>
-      <button onclick="submitTitle()">SUBMIT</button>
     </form>
 
     <textarea cols="80" rows="10" id="content" name="content">
@@ -130,28 +131,35 @@
         CKEDITOR.replace('content');
     </script>
 
-    <button onclick="submit()">SUBMIT</button>
+    <h3>CUSTOM<span>DATE</span>PICKER</h3>
+<div style="display: flex;display: flex;margin-right: 760px;">
+    <div class="date-picker">
+        <div class="selected-date"></div>
 
+        <div class="dates">
+            <div class="month">
+                <div class="arrows prev-mth">&lt;</div>
+                <div class="mth"></div>
+                <div class="arrows next-mth">&gt;</div>
+            </div>
+
+            <div class="days"></div>
+        </div>
+    </div>
+    <form action="192.168.100.6:8080/blogs/store">
+
+    </form>
+    <button style="    margin-top: 30px;
+    height: 50px;
+    width: 100px;" onclick="submit()">SUBMIT</button>
+
+</div>
     <div id="parsedContent">
     </div>
 </div>
 
 
-<h3>CUSTOM<span>DATE</span>PICKER</h3>
 
-<div class="date-picker">
-    <div class="selected-date"></div>
-
-    <div class="dates">
-        <div class="month">
-            <div class="arrows prev-mth">&lt;</div>
-            <div class="mth"></div>
-            <div class="arrows next-mth">&gt;</div>
-        </div>
-
-        <div class="days"></div>
-    </div>
-</div>
 </body>
 <script>
     function submit() {
@@ -169,6 +177,7 @@
     }
 
     const date_picker_element = document.querySelector('.date-picker');
+    console.log(date_picker_element);
     const selected_date_element = document.querySelector('.date-picker .selected-date');
     const dates_element = document.querySelector('.date-picker .dates');
     const mth_element = document.querySelector('.date-picker .dates .month .mth');
@@ -195,12 +204,10 @@
 
     populateDates();
 
-    // EVENT LISTENERS
     date_picker_element.addEventListener('click', toggleDatePicker);
     next_mth_element.addEventListener('click', goToNextMonth);
     prev_mth_element.addEventListener('click', goToPrevMonth);
 
-    // FUNCTIONS
     function toggleDatePicker (e) {
         if (!checkEventPathForClass(e.path, 'dates')) {
             dates_element.classList.toggle('active');
@@ -234,11 +241,11 @@
         if (month == 1) {
             amount_days = 28;
         }
-
         for (let i = 0; i < amount_days; i++) {
             const day_element = document.createElement('div');
             day_element.classList.add('day');
-            day_element.textContent = i + 1;
+
+            day_element.textContent = i + 1
 
             if (selectedDay == (i + 1) && selectedYear == year && selectedMonth == month) {
                 day_element.classList.add('selected');
